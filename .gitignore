@@ -1,1 +1,13 @@
+# Zola 生成的文件
+public/
+
+# macOS 系统文件
 .DS_Store
+
+# 编辑器临时文件
+*~
+*.swp
+*.swo
+
+# 依赖目录
+node_modules/
