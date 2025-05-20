@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Jerry's research
+</h1>
+<h2>Research</h2>
+<ul>
+  {% set research_section = get_section(path="research/_index.md") %}
+  {% if research_section.pages %}
+    {% for page in research_section.pages %}
+      <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+    {% endfor %}
+  {% else %}
+    <li>暂无内容</li>
+  {% endif %}
+</ul>
+{% endblock content %}

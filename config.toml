@@ -1,0 +1,45 @@
+# The URL the site will be built for
+base_url = "https://icbmicbm.github.io"
+
+# Theme
+theme = "radion"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "one-dark"
+insert_anchor_links = "heading"
+
+[search]
+index_format = "elasticlunr_json"
+
+taxonomies = [
+    # You can enable/disable RSS
+    {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
+
+[extra]
+# 网站作者
+author = "Jerry"
+# 网站标题
+radion_title = "Jerry's Research"
+# 导航菜单
+radion_menu = [
+    {url = "$BASE_URL/", name = "首页"}
+]
+# 代码块支持
+codeblock = true
+# 启用搜索栏
+enable_search = true
+# 主题模式设置：light, dark, auto, toggle
+theme = "toggle"
+# 禁用评论系统
+comments = false
