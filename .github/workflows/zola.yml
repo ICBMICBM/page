@@ -5,6 +5,9 @@ on:
     branches:
       - main  # 设置为你的默认分支
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,14 +15,21 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v3
         with:
-          submodules: recursive
+          submodules: true
+          fetch-depth: 0
 
-      - name: 构建和部署
-        uses: shalzz/zola-deploy-action@v0.17.2
-        env:
-          # 你必须设置 GITHUB_TOKEN 环境变量
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # 如果你使用自定义域名，取消下面一行的注释并修改为你的域名
-          # DOMAIN: example.com
-          # 如果你想使用不同的分支作为发布分支，取消下面一行的注释并修改
-          PAGES_BRANCH: gh-pages
+      - name: 安装 Zola
+        run: |
+          wget -q -O - "https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz" | tar xzf -
+          chmod +x zola
+          mv zola /usr/local/bin
+      
+      - name: 构建网站
+        run: zola build
+
+      - name: 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
