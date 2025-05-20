@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: 构建和部署
         uses: shalzz/zola-deploy-action@v0.17.2
