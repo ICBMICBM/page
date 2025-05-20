@@ -24,6 +24,12 @@ jobs:
           chmod +x zola
           mv zola /usr/local/bin
       
+      - name: 下载并安装 radion 主题
+        run: |
+          mkdir -p themes
+          rm -rf themes/radion
+          git clone https://github.com/micahkepe/radion.git themes/radion
+      
       - name: 构建网站
         run: zola build
 
