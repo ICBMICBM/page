@@ -30,6 +30,13 @@ jobs:
           rm -rf themes/radion
           git clone https://github.com/micahkepe/radion.git themes/radion
       
+      - name: 检查内容文件
+        run: |
+          # 移除对自定义模板的引用
+          find content -name "*.md" -exec sed -i 's/template = "research-page.html"//g' {} \;
+          find content -name "*.md" -exec sed -i 's/template = "research.html"//g' {} \;
+          find content -name "*.md" -exec sed -i 's/page_template = "research-page.html"//g' {} \;
+      
       - name: 构建网站
         run: zola build
 
